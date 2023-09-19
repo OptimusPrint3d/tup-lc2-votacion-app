@@ -1,0 +1,96 @@
+
+@import url('../common.css');
+.header-page{
+    padding:0.5rem;
+    background-color: var(--fondo-Cabecera);
+    color:white;
+    /*width:90%;*/
+    margin: 0,auto,auto,auto;
+    height: 50px;
+
+}
+.barra-menu{
+    background-color: var(--fondo-Menu);
+     height: 45px;
+    /*padding-top: 20px;*/
+    display: flex;
+    align-items: center;
+    
+    
+
+    
+    
+}
+#consultar {
+    color: white;
+    margin:2px
+    
+}
+#boton-paso{
+    background-color: var(--magenta);
+    border:none;
+    padding:5px;
+    width: 120px;
+    color: white;
+    border-radius: 5px;
+    margin:3px
+}
+#boton-generales{
+    background-color: var(--celeste);
+    border:none;
+    width: 120px;
+    padding:5px;
+    color:white;
+    border-radius: 5px;
+    margin: 3px;
+}
+#boton-informes{
+    background-color: var(--fondo-Menu);
+    color: white;
+    border-color: white;
+    border-radius: 0.5rem;
+    width: 120px;
+    
+    
+}
+#sec-titulo{
+    display:flex;
+    justify-content: space-evenly;
+}
+#titulo-parrafo{
+    width: 50%;
+}
+
+#sec-contenido{
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+#botones-paso-generales{
+    display: flex;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-evenly;
+}
+#button-paso-logo{
+    background-color: var(--magenta);
+    border:none;
+    padding:5px;
+    width: 220px;
+    color: white;
+    border-radius: 5px;
+    margin:3px;
+    height:4rem
+}
+#button-generales-logo{
+    background-color: var(--celeste);
+    border:none;
+    width: 220px;
+    padding:5px;
+    color:white;
+    border-radius: 5px;
+    margin: 3px;
+    height: 4rem;
+}
