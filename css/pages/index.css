@@ -12,19 +12,13 @@
 .barra-menu{
     background-color: var(--fondo-Menu);
      height: 45px;
-    /*padding-top: 20px;*/
     display: flex;
     align-items: center;
-    
-    
-
-    
-    
 }
+
 #consultar {
     color: white;
     margin:2px
-    
 }
 #boton-paso{
     background-color: var(--magenta);
@@ -44,18 +38,19 @@
     border-radius: 5px;
     margin: 3px;
 }
+
 #boton-informes{
     background-color: var(--fondo-Menu);
     color: white;
     border-color: white;
     border-radius: 0.5rem;
     width: 120px;
-    
-    
 }
+
 #sec-titulo{
     display:flex;
     justify-content: space-evenly;
+    height: 400px;
 }
 #titulo-parrafo{
     width: 50%;

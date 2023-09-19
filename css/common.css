@@ -33,19 +33,58 @@
 --mensaje-usuario-verde: #28a745;
 --mensaje-usuario-rojo: #dc3545;
 }
+
+body{
+    height: 100%;
+    margin: 0px;
+}
+
 p{
     font-size:12px;
     font-family: roboto;
     color: --textos;
 }
+
 h1{
     font-size: 26px;
     color:--titulos;
     font-family: roboto;
     padding-bottom: 20px;
 }
+
 h3{
     font-size:18px;
     font-family: roboto;
     color: --titulos;
+}
+
+.header-page a{
+    margin-left: 90px;
+}
+
+.barra-menu ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer div{
+    background-color: var(--fondo-Footer);
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer img{
+    width: 150px;
+    margin: 3px;
 }

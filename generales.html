@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Publicación de Resultados Electorales</title>
+    <link rel="icon" type="image/png" href="img/icons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/png" href="favicon-16x16.png">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/pages/index.css">
+</head>
+
+<body>
+    <header>
+        <!--Barra de logo portal-->
+        <div class="header-page">
+            <a href="index.html"><img src="./img/Logo_DINE_negativo.png" alt="logo" class="logo-dir" height="50"></a>
+        </div>
+        <!--Barra de menú principal-->
+        <div class="barra-menu">
+            <ul>
+                <li>
+                    <select name="año" id="">
+                        <option value="0">Año</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="cargo" id="">
+                        <option value="0">Cargo</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="distrito" id="">
+                        <option value="0">Distrito</option>
+                    </select>
+                </li>
+                <li><a class="active" href="#"><button id="boton-filtrar">Filtrar</button></a></li>
+                <li><a href="paso.html"><button id="boton-paso">PASO</button></a></li>
+                <li><a class="active" href="informes.html"><button id="boton-informes">INFORMES</button></a></li>
+            </ul>
+
+        </div>
+    </header>
+    <!-- Contenido principal de la página -->
+    <main>
+        <section id="sec-titulo">
+            <!--Seccion para agregar una palicula favorita por codigo-->
+            <h2>Titulo de Sección</h2>
+            <p>Párrafo o subtítulo</p>
+            <div>Imagen</div>
+        </section>
+        <section id="sec-contenido">
+            <h3>Elecciones 2021 | Generales</h3>
+            <!--Seccion para contenido de la página-->
+        </section>
+    </main>
+    <!--Pie de página-->
+    <footer>
+        <div>
+            <img src="./img/icons/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="" srcset="">
+            <img src="./img/icons/Logo_DINE_negativo.a88f983e.png" alt="" srcset="">
+            <img src="./img/icons/logos_001-10.4430c8d5.png" alt="" srcset="">
+            <div>
+                <p>
+                    Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley 19945). Los
+                    porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al
+                    art.
+                    45 Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
+                    residentes en el exterior ni privados de la libertad. Al usar este sitio usted acepta los Términos y
+                    Condiciones
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
