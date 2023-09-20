@@ -4,7 +4,18 @@ select {
     border: none;
     margin-right: 2rem;
 }
-
+.cont-botoninicio{
+    display: flex;
+    width: 60%;
+    justify-content: flex-end;
+}
+.rutas{
+    padding-bottom: 1rem;
+}
+a{
+    text-decoration: none;
+    color:var(--fondo-Cabecera);
+}
 main {
     width: 80%;
     margin-left: auto;
@@ -34,14 +45,17 @@ h4 {
 }
 
 .agregar-informe {
-    width: 40%
+    width: 40%;
+      
 }
 
 .boton-agregarInforme {
     background-color: gray;
     border: none;
     width: 10rem;
+    height: 35px;  
     border-radius: 0.3rem;
+    color: white;
 }
 
 .chart-wrap .grid {
@@ -107,10 +121,13 @@ h4 {
 }
 
 .mesas-escrutadas {
+    display: flex;
+    align-items: center;
     background-color: var(--celeste);
     width: 32%;
     border-radius: 0.4rem;
     height: 60px;
+    color: white;
 
 }
 
@@ -121,13 +138,16 @@ h4 {
     width: 32%;
     border-radius: 0.4rem;
     height: 60px;
+    color: white;
 }
 
 .participacion {
+    display: flex;
     background-color: var(--morado);
     width: 32%;
     border-radius: 0.4rem;
     height: 60px;
+    color: white;
 }
 
 /*AGRUPACION POLITICA*/
@@ -196,11 +216,17 @@ h4 {
     -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    
+    
 }
+#img-provincia{
+    /* background-color: green;
+    margin-left: -20%; */
+    display: flex;
+    align-items: center;
+    max-width: 100%;
 
+}
 .cont-resumen {
     width: 34%;
     padding: 1%;

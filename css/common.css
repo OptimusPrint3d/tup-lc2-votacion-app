@@ -37,24 +37,25 @@
 body{
     height: 100%;
     margin: 0px;
+    font-family: 'Roboto',sans-serif;
 }
 
 p{
     font-size:12px;
-    font-family: roboto;
+    
     color: --textos;
 }
 
 h1{
     font-size: 26px;
     color:--titulos;
-    font-family: roboto;
+    
     padding-bottom: 20px;
 }
 
 h3{
     font-size:18px;
-    font-family: roboto;
+    
     color: --titulos;
 }
 
