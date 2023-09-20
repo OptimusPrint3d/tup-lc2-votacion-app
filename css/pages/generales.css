@@ -11,6 +11,10 @@ main {
     margin-right: auto;
 }
 
+h4 {
+    text-align: center;
+}
+
 #boton-filtrar {
     background-color: gray;
     border-radius: 0.5rem;
@@ -29,74 +33,100 @@ main {
 }
 
 .informe-datos {
-    
+
     display: flex;
     width: 100%;
-    height: 50px ;     
+    height: 50px;
     align-items: center;
 }
-.agregar-informe{
-    width:40%
+
+.agregar-informe {
+    width: 40%
 }
-.boton-agregarInforme{
+
+.boton-agregarInforme {
     background-color: gray;
-    border:none;
+    border: none;
     width: 10rem;
     border-radius: 0.3rem;
 }
-.lista-datos{
-    display:flex;
+
+.lista-datos {
+    display: flex;
     width: 60%;
     background-color: white;
     justify-content: space-between;
 }
-.mesas-escrutadas{
+
+.mesas-escrutadas {
     background-color: var(--celeste);
     width: 32%;
     border-radius: 0.4rem;
     height: 60px;
 
 }
-/*barra de progreso*/
-.progress {
-    height: 35px;
-    width: 100%;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    }
-    .progress-bar {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transition: width 0.25s;
-    border-radius: 5px;
-    }
-    .progress-bar-text {
-    margin-left: 10px;
-    font-weight: bold;
-    color: var(--textos);
-    font-size: 9px;
-    }
-    
-.electores{
+
+
+
+
+
+.electores {
     background-color: var(--magenta);
     width: 32%;
     border-radius: 0.4rem;
     height: 60px;
 }
-.participacion{
-    background-color:  var(--morado);
+
+.participacion {
+    background-color: var(--morado);
     width: 32%;
     border-radius: 0.4rem;
     height: 60px;
 }
+
+/*AGRUPACION POLITICA*/
+.linea{
+    height: 1px;
+    background-color: gray;
+}
+/*barra de progreso*/
+.partido-porcentaje-votos{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.progress {
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: width 0.25s;
+    border-radius: 5px;
+}
+
+.progress-bar-text {
+    margin-left: 10px;
+    font-weight: bold;
+    color: var(--textos);
+    font-size: 9px;
+}
+
 .contenedores-grafico {
-    
+
     height: 23rem;
     padding-top: 1rem;
     display: flex;
     width: 100%;
     justify-content: space-between;
+    
+
 }
 
 .cont-agrupaciones {
@@ -107,6 +137,8 @@ main {
     -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
+    overflow-y: scroll;
+    border: 1px solid #ccc;
 }
 
 .cont-provincia {
