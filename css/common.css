@@ -58,6 +58,47 @@ h3{
     color: --titulos;
 }
 
+.header-page{
+    padding:0.5rem;
+    background-color: var(--fondo-Cabecera);
+    color:white;
+    /*width:90%;*/
+    margin: 0,auto,auto,auto;
+    height: 50px;
+
+}
+.barra-menu{
+    background-color: var(--fondo-Menu);
+     height: 35px;
+    display: flex;
+    align-items: center;
+}
+#boton-paso{
+    background-color: var(--magenta);
+    border:none;
+    padding:5px;
+    width: 120px;
+    color: white;
+    border-radius: 5px;
+    margin:3px
+}
+#boton-generales{
+    background-color: var(--celeste);
+    border:none;
+    width: 120px;
+    padding:5px;
+    color:white;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+#boton-informes{
+    background-color: var(--fondo-Menu);
+    color: white;
+    border-color: white;
+    border-radius: 0.5rem;
+    width: 120px;
+}
 .header-page a{
     margin-left: 90px;
 }
@@ -74,6 +115,7 @@ footer{
     left: 0;
     bottom: 0;
     width: 100%;
+    color: gray;
 }
 
 footer div{
