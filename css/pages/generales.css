@@ -15,13 +15,6 @@ h4 {
     text-align: center;
 }
 
-#boton-filtrar {
-    background-color: rgb(232, 231, 231);
-    border-radius: 0.6rem;
-    width: 120px;
-
-}
-
 #boton-inicio {
     background-color: gray;
     border: none;
@@ -51,6 +44,61 @@ h4 {
     border-radius: 0.3rem;
 }
 
+.chart-wrap .grid {
+    margin-left: 50px;
+    position: relative;
+    padding: 5px 0 5px 0;
+    height: 100%;
+    width: 100%;
+    border-left: 2px solid var(--grid-color);
+    font-size: 10px;
+}
+
+/* posicionamos el % del gráfico*/
+.chart-wrap .grid::before {
+    font-size: 0.8em;
+    font-weight: bold;
+    content: '0%';
+    position: absolute;
+    left: -0.5em;
+    top: -1.5em;
+}
+
+.chart-wrap .grid::after {
+    font-size: 0.8em;
+    font-weight: bold;
+    content: '100%';
+    position: absolute;
+    right: -1.5em;
+    top: -1.5em;
+}
+
+/* giramos las valores de 0% y 100% para horizontal */
+.chart-wrap.horizontal .grid::before,
+.chart-wrap.horizontal .grid::after {
+    transform: rotate(90deg);
+}
+
+.chart-wrap .bar {
+    width: var(--bar-value);
+    height: var(--bar-thickness);
+    margin: var(--bar-spacing) 0;
+    background-color: var(--bar-color);
+    border-radius: 0 var(--bar-rounded) var(--bar-rounded) 0;
+}
+
+.chart-wrap .bar:hover {
+    opacity: 0.7;
+}
+
+.chart-wrap .bar::after {
+    content: attr(data-name);
+    margin-left: 100%;
+    padding: 10px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .lista-datos {
     display: flex;
     width: 60%;
@@ -66,11 +114,9 @@ h4 {
 
 }
 
-
-
-
-
 .electores {
+    display: flex;
+    align-items: center;
     background-color: var(--magenta);
     width: 32%;
     border-radius: 0.4rem;
@@ -85,16 +131,18 @@ h4 {
 }
 
 /*AGRUPACION POLITICA*/
-.linea{
+.linea {
     height: 1px;
     background-color: gray;
 }
+
 /*barra de progreso*/
-.partido-porcentaje-votos{
+.partido-porcentaje-votos {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
+
 .progress {
     height: 35px;
     width: 100%;
@@ -125,7 +173,7 @@ h4 {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    
+
 
 }
 
@@ -144,62 +192,79 @@ h4 {
 .cont-provincia {
     width: 24%;
     padding: 1%;
-    
     border-radius: 0.5rem;
     -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .cont-resumen {
     width: 34%;
-    padding: 1%;    
+    padding: 1%;
     border-radius: 0.5rem;
     -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
 }
+
 /*CHART RESUMEN*/
-.simple-bar-chart{
+.simple-bar-chart {
     --line-count: 10;
     --line-color: currentcolor;
     --line-opacity: 0.25;
     --item-gap: 2%;
     --item-default-color: #060606;
-    
+
     height: 10rem;
     display: grid;
     grid-auto-flow: column;
     gap: var(--item-gap);
     align-items: end;
     padding-inline: var(--item-gap);
-    --padding-block: 1.5rem; /*space for labels*/
+    --padding-block: 1.5rem;
+    /*space for labels*/
     padding-block: var(--padding-block);
     position: relative;
     isolation: isolate;
-  }
-  
-  .simple-bar-chart::after{
+}
+
+.simple-bar-chart::after {
     content: "";
     position: absolute;
     inset: var(--padding-block) 0;
     z-index: -1;
     --line-width: 1px;
     --line-spacing: calc(100% / var(--line-count));
-    background-image: repeating-linear-gradient(to top, transparent 0 calc(var(--line-spacing) - var(--line-width)), var(--line-color) 0 var(--line-spacing));
+    /* background-image: repeating-linear-gradient(to top, transparent 0 calc(var(--line-spacing) - var(--line-width)), var(--line-color) 0 var(--line-spacing)); */
     box-shadow: 0 var(--line-width) 0 var(--line-color);
     opacity: var(--line-opacity);
-  }
-  .simple-bar-chart > .item{
+}
+
+.simple-bar-chart>.item {
     height: calc(1% * var(--val));
     background-color: var(--clr, var(--item-default-color));
     position: relative;
     animation: item-height 1s ease forwards
-  }
-  @keyframes item-height { from { height: 0 } }
-  
-  .simple-bar-chart > .item > * { position: absolute; text-align: center }
-  .simple-bar-chart > .item > .label { inset: 100% 0 auto 0 }
-  .simple-bar-chart > .item > .value { inset: auto 0 100% 0 }
-  
+}
+
+@keyframes item-height {
+    from {
+        height: 0
+    }
+}
+
+.simple-bar-chart>.item>* {
+    position: absolute;
+    text-align: center
+}
+
+.simple-bar-chart>.item>.label {
+    inset: 100% 0 auto 0
+}
+
+.simple-bar-chart>.item>.value {
+    inset: auto 0 100% 0
+}
