@@ -10,16 +10,29 @@
 
 #sec-titulo{
     display:flex;
-    justify-content: space-evenly;
-    height: 300px;
+    
+    height: 320px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
     
 }
 #titulo-parrafo{
-    width: 50%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    /* align-items: end; */
+    font-size: 30px;
+    
+}
+#parrafo-dir-electoral{
+    font-size: 14px;
+    width: 80%;
 }
 
 #sec-contenido{
-    width:90%;
+    width:80%;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
@@ -27,10 +40,13 @@
 }
 #botones-paso-generales{
     display: flex;
-    width: 60%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-evenly;
+}
+#titulo-botones-paso-generales{
+    font-size: 30px;
 }
 #button-paso-logo{
     display: flex;
@@ -38,7 +54,7 @@
     background-color: var(--magenta);
     border:none;
     padding:5px;
-    width: 280px;
+    width: 480px;
     color: white;
     border-radius: 5px;
     margin:3px;
@@ -54,7 +70,7 @@ a{
     align-items: center;
     background-color: var(--celeste);
     border:none;
-    width: 280px;
+    width: 480px;
     padding:5px;
     color:white;
     border-radius: 5px;
