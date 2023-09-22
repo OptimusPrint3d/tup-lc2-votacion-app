@@ -8,8 +8,14 @@
 }
 #sec-contenido{
     border-radius: 20px;
-    border:1px solid gray
-    
+    border:1px solid gray;    
+    height: 350px;
+}
+thead>tr>th{
+    border-bottom: 1px solid gray;
+    color: var(--titulo-Grilla);
+    font-size: 20px;
+    padding-bottom: 8px;
 }
 /* #tabla-datos{
     background-color: rgb(245, 101, 101);
@@ -44,4 +50,12 @@
 
 .celda-eleccion{
     display: flex;
+    width: 20%;
+    padding-right: 13px;
+}
+.celda-datos-generales{
+    width: 39%;
+}
+.celda-agrupacion{
+    width: 20%;
 }
