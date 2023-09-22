@@ -32,16 +32,16 @@
     justify-content: space-around;
     width: 100%;
     align-items: center;
+    margin: -180px -6px 85px 5px;
 }
 .button-container {
     display: flex;
     justify-content: space-between;
+    margin: -180px 0px 0px 0px;
     
     
 }
 
-
-
 .celda-eleccion{
-    width:10%
+    display: flex;
 }
