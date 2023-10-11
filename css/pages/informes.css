@@ -1,3 +1,8 @@
+:root{
+    --textos: #333;
+    --celeste: #37bbed;
+}
+
 .cont-botoninicio{
     display: flex;
     width: 80%;
@@ -21,6 +26,10 @@ thead>tr>th{
     padding-bottom: 8px;
 }
 
+.img-provincia{
+    margin-left: -80px;
+}
+
 
 .flex-column {
     display: flex;
@@ -42,9 +51,19 @@ thead>tr>th{
     
 }
 
+.texto-elecciones-chico{
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--textos);
+}
+
+.rutas{
+    font-size: 11px;
+    color: var(--celeste);
+}
+
 .celda-eleccion{
     display: flex;
-    width: 20%;
     padding-right: 13px;
 }
 .celda-datos-generales{
