@@ -46,6 +46,7 @@ p{
     font-size:12px;
     
     color: --textos;
+    font-family: 'Roboto',sans-serif;
 }
 
 h1{
@@ -53,31 +54,37 @@ h1{
     color:--titulos;
     
     padding-bottom: 20px;
+    font-family: 'Roboto',sans-serif;
 }
 
 h3{
     font-size:18px;
     
     color: --titulos;
+    font-family: 'Roboto',sans-serif;
 }
 #consultar{
     color: white;
 }
-
+header{
+    width: 100%;
+    background-color: var(--fondo-Cabecera);
+}
 .header-page{
     padding:0.5rem;
     background-color: var(--fondo-Cabecera);
     color:white;
-    /*width:90%;*/
+    width:90%;
     margin: 0,auto,auto,auto;
     height: 50px;
 
 }
 .barra-menu{
     background-color: var(--fondo-Menu);
-     height: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 #boton-filtrar {
     background-color: rgb(232, 231, 231);
@@ -87,6 +94,7 @@ h3{
     font: #fff 10px;
     text-align: center;
     color: var(--textos);
+    text-transform: uppercase;
 }
 #boton-paso{
     background-color: var(--magenta);
@@ -134,22 +142,32 @@ h3{
     justify-content: center;
     align-items: center;
 }
-
+.main-paso-generales{
+    height: 600px;
+}
 footer{
-    position: fixed;
+    background-color: var(--fondo-Footer);
+    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;
     color: gray;
-    height: 75px;
+    height:145px;
+    line-height: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 footer div{
     background-color: var(--fondo-Footer);
-    padding: 5px 10px;
+    color:var(--texto-footer);
+    /* padding: 5px 10px; */
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 80%;
 }
 
 footer img{
