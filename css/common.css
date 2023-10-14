@@ -75,34 +75,44 @@ h3{
 }
 .barra-menu{
     background-color: var(--fondo-Menu);
-     height: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
 }
+
 #boton-filtrar {
-    background-color: rgb(232, 231, 231);
+    background-color: white;
     border-radius: 15px;
-    width: 120px;
     padding: 5px;
-    font: #fff 10px;
+    font: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
     text-align: center;
     color: var(--textos);
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 #boton-paso{
     background-color: var(--magenta);
     border:none;
     padding:5px;
     width: 120px;
-    color: white;
+    font: #fff;
+    font-size: 10px;
     border-radius: 5px;
     margin:3px
 }
+
 #boton-generales{
     background-color: var(--celeste);
     border:none;
     width: 120px;
     padding:5px;
-    color:white;
+    font: #fff;
+    font-size: 10px;
     border-radius: 5px;
     margin: 3px;
 }
@@ -113,11 +123,29 @@ h3{
     border-color: white;
     border-radius: 15px;
     border: solid 1px;
-    font: #fff 10px;
+    font: #fff;
+    font-size: 10px;
     text-transform: uppercase;
     text-align: center;
     padding: 5px;
     width: 120px;
+}
+
+#boton-inicio {
+    background-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    width: 120px;
+    color: white;
+    font: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin: 3px
+}
+
+#boton-inicio:hover{
+    color: var(--textos);
 }
 
 #boton-informes:hover{
@@ -135,26 +163,41 @@ h3{
     align-items: center;
 }
 
+.filters{
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    color: var(--celeste);
+    font-weight: bold;
+}
+
 footer{
+    background-color: var(--fondo-Footer);
     position: fixed;
+    height: 12%;
     left: 0;
     bottom: 0;
     width: 100%;
     color: gray;
-    height: 75px;
 }
 
 footer div{
-    background-color: var(--fondo-Footer);
     padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 90%;
 }
 
 footer img{
     width: 150px;
     margin: 3px;
+}
+
+footer p{
+    line-height: 1.5;
 }
 
 /*MENSAJES DE ALERTA ERROR Y WARNING*/
