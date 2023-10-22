@@ -179,11 +179,14 @@ h4 {
 
 .contenedores-grafico {
 
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     height: 23rem;
     padding-top: 1rem;
     display: flex;
     width: 100%;
     justify-content: space-between;
+    
+    
 
 
 }
@@ -193,9 +196,7 @@ h4 {
     background-color: white;
     padding: 1%;
     border-radius: 0.5rem;
-    -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     overflow-y: scroll;
     border: 1px solid #ccc;
 }
@@ -204,27 +205,20 @@ h4 {
     width: 24%;
     padding: 1%;
     border-radius: 0.5rem;
-    -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);    
     
 }
-#img-provincia{
-    /* background-color: green;
-    margin-left: -20%; */
+
+#img-provincia{  
     display: flex;
     align-items: center;
     max-width: 100%;
-
 }
 .cont-resumen {
     width: 34%;
     padding: 1%;
     border-radius: 0.5rem;
-    -webkit-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 20px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 /*CHART RESUMEN*/

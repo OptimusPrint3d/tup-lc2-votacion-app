@@ -104,6 +104,7 @@ header{
 
 #boton-paso{
     background-color: var(--magenta);
+    color:white;
     border:none;
     padding:5px;
     width: 120px;
@@ -115,6 +116,7 @@ header{
 
 #boton-generales{
     background-color: var(--celeste);
+    color:white;
     border:none;
     width: 120px;
     padding:5px;
