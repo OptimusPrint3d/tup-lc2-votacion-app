@@ -4,9 +4,7 @@
 
 #consultar {
     color: white;
-    margin:2px
 }
-
 
 #sec-titulo{
     display:flex;
@@ -17,6 +15,7 @@
     margin-left: auto;
     
 }
+
 #titulo-parrafo{
     width: 80%;
     display: flex;
@@ -26,6 +25,7 @@
     font-size: 30px;
     
 }
+
 #parrafo-dir-electoral{
     font-size: 14px;
     width: 80%;
@@ -38,6 +38,7 @@
     margin-right: auto;
     
 }
+
 #botones-paso-generales{
     display: flex;
     width: 90%;
@@ -45,9 +46,11 @@
     margin-right: auto;
     justify-content: space-evenly;
 }
+
 #titulo-botones-paso-generales{
     font-size: 30px;
 }
+
 #button-paso-logo{
     display: flex;
     align-items: center;
@@ -59,12 +62,12 @@
     border-radius: 5px;
     margin:3px;
     height:4.5rem;
-    
-    
 }
+
 a{
     text-decoration: none;
 }
+
 #button-generales-logo{
     display: flex;
     align-items: center;
@@ -77,6 +80,7 @@ a{
     margin: 3px;
     height: 4.5rem;
 }
+
 button {
     cursor: pointer;
 }
