@@ -29,15 +29,21 @@
                     </select>
                 </li>
                 <li>
-                    <select class="filters" name="cargo" id="filtroCargo">
+                    <select class="filters" name="cargo" id="filtroCargo" onchange="getCargoSeleccionado()">
                         <option value="0">Cargo</option>
                     </select>
                 </li>
                 <li>
-                    <select class="filters" name="distrito" id="filtroDistrito">
+                    <select class="filters" name="distrito" id="filtroDistrito" onchange="getDistritoSeleccionado()">
                         <option value="0">Distrito</option>
                     </select>
                 </li>
+                <li>
+                  <select class="filters" name="seccion" id="filtroSeccion">
+                      <option value="0">Sección</option>
+                  </select>
+              </li>
+
                 <li><a class="active" href="#"><button id="boton-filtrar" onclick="filtrarDatos()">
                             <img src="https://img.icons8.com/?size=1x&id=132&format=png" height="15" alt="" srcset="">
                             Filtrar</button></a></li>
