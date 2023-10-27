@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/pages/generales.css">
     <link rel="stylesheet" href="./css/pages/paso.css">
+    <script src="js/common.js"></script>
 </head>
 
 <body>
@@ -23,21 +24,21 @@
         <div class="barra-menu">
             <ul>
                 <li>
-                    <select class="filters" name="año" id="">
+                    <select class="filters" name="año" id="filtroAño" onchange="getAñoSeleccionado()">
                         <option value="0">Año</option>
                     </select>
                 </li>
                 <li>
-                    <select class="filters" name="cargo" id="">
+                    <select class="filters" name="cargo" id="filtroCargo">
                         <option value="0">Cargo</option>
                     </select>
                 </li>
                 <li>
-                    <select class="filters" name="distrito" id="">
+                    <select class="filters" name="distrito" id="filtroDistrito">
                         <option value="0">Distrito</option>
                     </select>
                 </li>
-                <li><a class="active" href="#"><button id="boton-filtrar">
+                <li><a class="active" href="#"><button id="boton-filtrar" onclick="filtrarDatos()">
                             <img src="https://img.icons8.com/?size=1x&id=132&format=png" height="15" alt="" srcset="">
                             Filtrar</button></a></li>
                 <li><a href="paso.html"><button id="boton-paso">PASO</button></a></li>
