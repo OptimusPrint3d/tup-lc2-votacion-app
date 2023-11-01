@@ -5,14 +5,11 @@ var tipoEleccion;
 const tipoRecuento = 1;
 
 
-
-
 if (ubicacionPag === "generales.html") {
     tipoEleccion = 2
 } else if (ubicacionPag === "paso.html") {
     tipoEleccion = 1
 }
-
 
 
 
@@ -23,6 +20,8 @@ async function fetchData() {
             throw new Error("Error en la solicitud");
         }
         const años = await response.json();
+        
+        console.log(años)
         return años; // Devuelve los datos
     } catch (error) {
         console.error("Error en fetchData:", error);
