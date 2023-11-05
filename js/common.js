@@ -1,3 +1,4 @@
+//import { mapas } from './mapas.js';
 var url = window.location.href;
 var ubicacionPag = url.substring(url.lastIndexOf("/") + 1);
 console.log(ubicacionPag);
@@ -231,31 +232,35 @@ function getSeccionSeleccionada(){
 
 
 function filtrarDatos(){
-   
-    /*
-        anioEleccion
-        o tipoRecuento => Por defecto 1
-        o tipoElección => 1 o 2 dependiendo si está en generales o paso
-        o categoriaId: 2 (valor por defecto)
-        o distritoId => 
-        o seccionProvincialId
-        o seccionId =>lo tenemos 
-        o circuitoId: “” (valor por defecto)
-        o mesaId: “” (valor por defecto)
-    */
+    var selectElement = document.getElementById("filtroAño");
+    var newTitle=`Elecciones ${selectElement.value} | ${parseInt(selectElement.getAttribute("tipoEleccion"))==1? "Paso" : "Generales"}`;
+
+    var tituloEleccion = document.getElementById("tituloEleccion");
+    tituloEleccion.textContent=newTitle;
+
+    var categoria = document.getElementById("filtroCargo");
+    var categoriaText = categoria.value;
+    var distrito = document.getElementById("filtroDistrito");
+    var distritoText = distrito.options[distrito.selectedIndex].text;
+    var seccion = document.getElementById("filtroSeccion");
+    var seccionText = seccion.options[seccion.selectedIndex].text;
+    var newSubtitle=`${selectElement.value} > ${parseInt(selectElement.getAttribute("tipoEleccion"))==1? "Paso" : "Generales"} > Provisorio > ${categoriaText} > ${distritoText} > ${seccionText}`;
+
+    var subtituloEleccion = document.getElementById("subtituloEleccion");
+    subtituloEleccion.textContent = newSubtitle;
 
     fetchVotos();
 }
 
 async function fetchVotos(){
     var selectElement = document.getElementById("filtroAño");
-    var anioEleccion = selectElement.value;
-    var tipoRecuento = 1; //por defecto
-    var tipoEleccion = selectElement.getAttribute("tipoEleccion");
-    var categoria = document.getElementById("filtroCargo");
-    var categoriaId = categoria.options[categoria.selectedIndex].getAttribute("cargo_id");
-    var distritoId = document.getElementById("filtroDistrito").value;
-    var seccionId = document.getElementById("filtroSeccion").value;
+    var anioEleccion  = selectElement.value;
+    var tipoRecuento  = 1; //por defecto
+    var tipoEleccion  = selectElement.getAttribute("tipoEleccion");
+    var categoria     = document.getElementById("filtroCargo");
+    var categoriaId   = categoria.options[categoria.selectedIndex].getAttribute("cargo_id");
+    var distritoId    = document.getElementById("filtroDistrito").value;
+    var seccionId     = document.getElementById("filtroSeccion").value;
     var seccionProvincialId;
 
     try {
@@ -271,9 +276,22 @@ async function fetchVotos(){
         console.log("--------------------------------------------")
         console.log(votos)
         console.log("--------------------------------------------")
-        return votos; // Devuelve los datos
+
+        mostrarVotos(votos);
     } catch (error) {
         console.error("Error en fetchVotos:", error);
         throw error; // Lanza el error nuevamente
     }
+}
+
+function mostrarVotos(votosAMostrar){
+    document.getElementById("porcentajeMesas").textContent=votosAMostrar.estadoRecuento.mesasTotalizadas;
+    document.getElementById("porcentajeElectores").textContent=votosAMostrar.estadoRecuento.cantidadElectores;
+    document.getElementById("porcentajeParticipacion").textContent=votosAMostrar.estadoRecuento.participacionPorcentaje+"%";
+
+    var divElement = document.getElementById('mapas');
+    var svgPath = mapas[parseInt(document.getElementById("filtroDistrito").value)];
+    var distrito = document.getElementById("filtroDistrito");
+    var distritoText = distrito.options[distrito.selectedIndex].text;
+    divElement.innerHTML = `<h3>${distritoText}</h3> ${svgPath}`;
 }

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/pages/generales.css">
     <link rel="stylesheet" href="./css/pages/paso.css">
     <script src="js/common.js"></script>
+    <script src="js/mapas.js"></script>
 </head>
 
 <body>
@@ -60,8 +61,8 @@
     <!-- Contenido principal de la página -->
     <main class="main-paso-generales">
         <section class="titulo">
-        <h1>Elecciones 2021 | Generales</h1>
-        <p class="texto-path">
+        <h1 id="tituloEleccion">Elecciones 2021 | Generales</h1>
+        <p id="subtituloEleccion" class="texto-path">
           2020 > Paso > Provisorio > Senadores Nacionales > Buenos Aires
         </p>
       </section>
@@ -102,7 +103,7 @@
               </svg>
               <div>
                 <p>Mesas Escrutadas</p>
-                <p>62.71%</p>
+                <p id="porcentajeMesas">62.71%</p>
               </div>
             </div>
             <div class="card">
@@ -138,7 +139,7 @@
               </svg>
               <div>
                 <p>Electores</p>
-                <p>62.71%</p>
+                <p id="porcentajeElectores">62.71%</p>
               </div>
             </div>
             <div class="card">
@@ -174,7 +175,7 @@
               </svg>
               <div>
                 <p>Participacion sobre escrutado</p>
-                <p>62.71%</p>
+                <p id="porcentajeParticipacion">62.71%</p>
               </div>
             </div>
           </div>
@@ -267,7 +268,7 @@
             </div>
           </div>
         </div>
-        <div class="mapa">
+        <div id="mapas" class="mapa">
           <h3>Buenos Aires</h3>
           <svg>
             <path
