@@ -57,6 +57,9 @@ fetchData()
 function getAñoSeleccionado() {
     var selectElement = document.getElementById("filtroAño");
     var selectedValue = selectElement.value;
+    const miAtributo = selectElement.getAttribute("tipoEleccion");
+
+    console.log(miAtributo);
 
     console.log(selectedValue)
 
@@ -100,13 +103,17 @@ function guardarYMostrarCargos(data) {
     var cargosAMostrar = [] // Se crea el array para llenar el segundo combo
 
     cargosAMostrar = data.Cargos.map((dato) => { // Se filtra los datos y solo se devuelve el cargo en forma de array 
-        return dato.Cargo;
+        //return dato.Cargo;
+        return {
+            cargo: dato.Cargo,
+            cargo_id: dato.IdCargo
+        };
     })
     console.log(cargosAMostrar)
     /* console.log("Cargos guardados y mostrados:", data); */
 
     selectHTML += cargosAMostrar.map(cargo => {
-        return `<option value="${cargo}">${cargo}</option>`;
+        return `<option value="${cargo.cargo}" cargo_id="${cargo.cargo_id}">${cargo.cargo}</option>`;
     }).join('');
 
     selectElement.innerHTML = selectHTML;
@@ -226,7 +233,7 @@ function getSeccionSeleccionada(){
 function filtrarDatos(){
    
     /*
-            anioEleccion
+        anioEleccion
         o tipoRecuento => Por defecto 1
         o tipoElección => 1 o 2 dependiendo si está en generales o paso
         o categoriaId: 2 (valor por defecto)
@@ -235,6 +242,38 @@ function filtrarDatos(){
         o seccionId =>lo tenemos 
         o circuitoId: “” (valor por defecto)
         o mesaId: “” (valor por defecto)
-    
     */
+
+    fetchVotos();
+}
+
+async function fetchVotos(){
+    var selectElement = document.getElementById("filtroAño");
+    var anioEleccion = selectElement.value;
+    var tipoRecuento = 1; //por defecto
+    var tipoEleccion = selectElement.getAttribute("tipoEleccion");
+    var categoria = document.getElementById("filtroCargo");
+    var categoriaId = categoria.options[categoria.selectedIndex].getAttribute("cargo_id");
+    var distritoId = document.getElementById("filtroDistrito").value;
+    var seccionId = document.getElementById("filtroSeccion").value;
+    var seccionProvincialId;
+
+    try {
+        const response = await fetch(
+            "https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion="+anioEleccion+
+            "&tipoRecuento="+tipoRecuento+"&tipoEleccion="+tipoEleccion+"&categoriaId="+categoriaId+"&distritoId="+distritoId+
+            "&seccionProvincialId&seccionId="+seccionId+"&circuitoId&mesaId");
+        if (!response.ok) {
+            throw new Error("Error en la solicitud");
+        }
+        const votos = await response.json();
+        
+        console.log("--------------------------------------------")
+        console.log(votos)
+        console.log("--------------------------------------------")
+        return votos; // Devuelve los datos
+    } catch (error) {
+        console.error("Error en fetchVotos:", error);
+        throw error; // Lanza el error nuevamente
+    }
 }
