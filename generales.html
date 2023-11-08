@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/pages/generales.css">
     <link rel="stylesheet" href="./css/pages/paso.css">
-    <script src="js/common.js"></script>
-    <script src="js/mapas.js"></script>
+    <!-- <script src="js/common.js" type="module"></script> -->
 </head>
 
 <body>
@@ -60,7 +59,12 @@
     </header>
     <!-- Contenido principal de la página -->
     <main class="main-paso-generales">
-        <section class="titulo">
+    </div>
+      <div id="loading" class="loader-container">
+        <div class="loader"></div>
+        <p>Espere por favor, la operación está en progreso...</p>
+      </div>
+      <section class="titulo">
         <h1 id="tituloEleccion">Elecciones 2021 | Generales</h1>
         <p id="subtituloEleccion" class="texto-path">
           2020 > Paso > Provisorio > Senadores Nacionales > Buenos Aires
@@ -343,7 +347,6 @@
     </main>
     <div id="prefooter">
        
-    </div>
     <!--Pie de página-->
     <footer>
         <div>
@@ -362,6 +365,8 @@
             </div>
         </div>
     </footer>
+    <script src="js/common.js"></script>
+    <script src="js/mapas.js"></script>
 </body>
 
 </html>

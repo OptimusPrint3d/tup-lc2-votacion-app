@@ -1,10 +1,12 @@
-//import { mapas } from './mapas.js';
+// import { mapas } from './mapas.js';
+
+// console.log(mapas);
+
 var url = window.location.href;
 var ubicacionPag = url.substring(url.lastIndexOf("/") + 1);
 console.log(ubicacionPag);
 var tipoEleccion;
 const tipoRecuento = 1;
-
 
 if (ubicacionPag === "generales.html") {
     tipoEleccion = 2
@@ -12,9 +14,19 @@ if (ubicacionPag === "generales.html") {
     tipoEleccion = 1
 }
 
+function display_loader(status){
+    // Para mostrar el mensaje y el spinner
+    document.querySelector('.loader-container').style.display = status;
 
+    if(status=='block'){
+        document.getElementById('boton-filtrar').disabled=true;
+    }else{
+        document.getElementById('boton-filtrar').disabled=false;
+    }
+}
 
 async function fetchData() {
+    display_loader('block');
     try {
         const response = await fetch("https://resultados.mininterior.gob.ar/api/menu/periodos");
         if (!response.ok) {
@@ -40,6 +52,7 @@ function cargaDatosAños(años) {
     }).join('');
 
     selectElement.innerHTML = selectHTML;
+    display_loader('none');
 }
 
 
@@ -232,6 +245,7 @@ function getSeccionSeleccionada(){
 
 
 function filtrarDatos(){
+
     var selectElement = document.getElementById("filtroAño");
     var newTitle=`Elecciones ${selectElement.value} | ${parseInt(selectElement.getAttribute("tipoEleccion"))==1? "Paso" : "Generales"}`;
 
@@ -294,4 +308,49 @@ function mostrarVotos(votosAMostrar){
     var distrito = document.getElementById("filtroDistrito");
     var distritoText = distrito.options[distrito.selectedIndex].text;
     divElement.innerHTML = `<h3>${distritoText}</h3> ${svgPath}`;
+
+    saveLocalStorage();
+}
+
+function saveLocalStorage(){
+    var selectElement = document.getElementById("filtroAño");
+    var anioEleccion  = selectElement.value;
+    var tipoRecuento  = 1; //por defecto
+    var tipoEleccion  = selectElement.getAttribute("tipoEleccion");
+    var categoria     = document.getElementById("filtroCargo");
+    var categoriaId   = categoria.options[categoria.selectedIndex].getAttribute("cargo_id");
+    var distritoId    = document.getElementById("filtroDistrito").value;
+    var seccionId     = document.getElementById("filtroSeccion").value;
+
+    var saved=localStorage.getItem("INFORMES");
+    var datosSeleccionados = [anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccionId];
+    var jsonString = JSON.stringify(datosSeleccionados);
+
+    var bandera=0;
+    if(saved!=null){
+        var informesObject=JSON.parse(saved);
+        var totalKeys = Object.keys(informesObject).length;
+
+        for (var i = 1; i <= totalKeys; i++) {
+            var clave = i;
+            var array = informesObject[clave-1];
+            var informesObjectString = JSON.stringify(array);
+            if(informesObjectString==jsonString){
+                bandera=1;
+                break;
+            }
+        }
+    }else{
+        var object={0:datosSeleccionados};
+        var objectJsonString=JSON.stringify(object);
+        localStorage.setItem("INFORMES", objectJsonString);
+    }
+
+    if(bandera==0 && saved!=null){
+        var informesObject=JSON.parse(saved);
+        var totalKeys = Object.keys(informesObject).length;
+        informesObject[totalKeys]=datosSeleccionados;
+        var objectJsonString=JSON.stringify(informesObject);
+        localStorage.setItem("INFORMES", objectJsonString);
+    }
 }
