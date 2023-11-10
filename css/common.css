@@ -211,18 +211,9 @@ footer p{
 }
 
 /*MENSAJES DE ALERTA ERROR Y WARNING*/
-.todos-alertas{
-     display: none; /*SE USA DISPLAY NONE PARA INVISIBILIZAR EL CONTENEDOR CON LAS ALERTAS*/
-     padding-top: 25px;
-     height: 300px;
-     width: 70%;
-     margin-left: auto;
-     margin-right: auto;
-     margin-bottom: 1rem;
- 
- }
+
  .exito{
-     
+     display:none !important;
      background-color: var(--mensaje-usuario-verde);
      height: 90px;
      border-radius: 0.5rem;
@@ -233,6 +224,7 @@ footer p{
      
  }
  .error{
+    display:none !important;
      background-color: var(--mensaje-usuario-rojo);
      height: 90px;
      border-radius: 0.5rem;
@@ -242,6 +234,7 @@ footer p{
      margin-bottom: 1rem;
  }
  .warning{
+    display:none !important;
      background-color: var(--mensaje-usuario-amarillo);
      height: 90px;
      border-radius: 0.5rem;
