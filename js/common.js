@@ -285,17 +285,74 @@ async function fetchVotos(){
         if (!response.ok) {
             throw new Error("Error en la solicitud");
         }
-        const votos = await response.json();
+        const votos = await response.json(); // Respuesta de la api
+
+        var votosTotalizados = votos.valoresTotalizadosPositivos; // Array que tiene los datos que van en el BOX de la izquierda
+
+        console.log(votosTotalizados);
         
         console.log("--------------------------------------------")
         console.log(votos)
         console.log("--------------------------------------------")
 
-        mostrarVotos(votos);
+        mostrarVotos(votos); // Funcion que muestra los valores MESAS ESCRUTADAS , ELECTORES , PARTICIPACION 
+        mostrarVotosTotalizados(votosTotalizados);
     } catch (error) {
         console.error("Error en fetchVotos:", error);
         throw error; // Lanza el error nuevamente
     }
+}
+
+function mostrarVotosTotalizados(votosTotalizados){ // Funcion que muestra el box de la izquierda y el de la derecha 
+    var coloresPartidosPoliticos = [
+        {
+            nombre:"JUNTOS POR EL CAMBIO",
+            color:"#fae525"
+        },{
+            nombre:"FRENTE DE TODOS",
+            color:"#1ee8de"
+        }
+    ]
+
+    // Obtén el contenedor donde deseas agregar las agrupaciones
+
+    const agrupacionesContainer = document.querySelector('.agrupaciones-container');
+
+    votosTotalizados.forEach(agrupacion => {
+        const template = `
+            <div class="agrupacion">
+                <h3>${agrupacion.nombreAgrupacion}</h3>
+                <div class="separador"></div>
+                <div class="agrupacion-texto">
+                    <h3>VERDE</h3>
+                    <div>
+                        <p>${agrupacion.votosPorcentaje}%</p>
+                        <p>${agrupacion.votos} VOTOS</p>
+                    </div>
+                </div>
+                <div class="progress" style="background: var(--grafica-verde-claro)">
+                    <div class="progress-bar" style="width: ${agrupacion.votosPorcentaje}%; background: var(--grafica-verde)">
+                        <span class="progress-bar-text">${agrupacion.votosPorcentaje}%</span>
+                    </div>
+                </div>
+                <div class="agrupacion-texto">
+                    <h3>PJ</h3>
+                    <div>
+                        <p>${100 - agrupacion.votosPorcentaje}%</p>
+                        <p>${agrupacion.votos} VOTOS</p>
+                    </div>
+                </div>
+                <div class="progress" style="background: var(--grafica-verde-claro)">
+                    <div class="progress-bar" style="width: ${100 - agrupacion.votosPorcentaje}%; background: var(--grafica-verde)">
+                        <span class="progress-bar-text">${100 - agrupacion.votosPorcentaje}%</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    
+        agrupacionesContainer.innerHTML += template;
+    });
+
 }
 
 function mostrarVotos(votosAMostrar){
