@@ -55,7 +55,6 @@ function cargaDatosAños(años) {
     display_loader('none');
 }
 
-
 // Ahora puedes llamar a las funciones en secuencia
 fetchData()
     .then(años => {
@@ -65,24 +64,18 @@ fetchData()
         console.error("Error:", error);
     });
 
-
-
-
 function getAñoSeleccionado() {
     var selectElement = document.getElementById("filtroAño");
     var selectedValue = selectElement.value;
     const miAtributo = selectElement.getAttribute("tipoEleccion");
 
     console.log(miAtributo);
-
     console.log(selectedValue)
 
     if (selectedValue && selectedValue != 0) {
         fetchCargos(selectedValue);
     }
 }
-
-
 
 async function fetchCargos(selectedValue) {
 
@@ -95,10 +88,7 @@ async function fetchCargos(selectedValue) {
         }
 
         var data = await response.json();
-
-
         tipoEleccion == 2 ? data = data[0] : data = data[1];
-
         guardarYMostrarCargos(data);
 
     } catch (error) {
@@ -131,9 +121,6 @@ function guardarYMostrarCargos(data) {
     }).join('');
 
     selectElement.innerHTML = selectHTML;
-
-
-
 }
 
 var arrayAñoMasCargo;
@@ -162,13 +149,7 @@ function getCargoSeleccionado() {
         console.log(arrayDistritos);
 
         mostrarDistritos(arrayDistritos);
-
     }
-
-
-
-
-
 }
 
 function mostrarDistritos(arrayDistritos) {
@@ -183,7 +164,6 @@ function mostrarDistritos(arrayDistritos) {
     }).join('');
 
     selectElement.innerHTML = selectHTML;
-
 }
 
 function getDistritoSeleccionado() {
@@ -217,8 +197,6 @@ function getDistritoSeleccionado() {
     } else {
         console.log("No se encontraron secciones para el valor seleccionado.");
     }
-
-
 }
 
 function mostrarSecciones(seccionesAMostrar) {
@@ -243,27 +221,38 @@ function getSeccionSeleccionada() {
     console.log(selectedOption)
 }
 
-
 function filtrarDatos() {
+    var anio = document.getElementById("filtroAño");
+    var tipoEleccion = anio.getAttribute("tipoEleccion");
+    var categoria  = document.getElementById("filtroCargo");
+    var distrito   = document.getElementById("filtroDistrito");
+    var seccion    = document.getElementById("filtroSeccion");
+    var datos={
+        anioEleccion:anio.value,
+        tipoRecuento:1,
+        tipoEleccion:tipoEleccion,
+        tipoEleccionText:parseInt(tipoEleccion) == 1 ? "Paso" : "Generales",
+        categoria:categoria,
+        categoriaId:categoria.options[categoria.selectedIndex].getAttribute("cargo_id"),
+        categoriaText:categoria.value,
+        distritoId:distrito.value,
+        distritoText:distrito.options[distrito.selectedIndex].text,
+        seccionId:seccion.value,
+        seccionText:seccion.options[seccion.selectedIndex].text,
+        seccionProvincialId:null
+    }
 
-    var selectElement = document.getElementById("filtroAño");
-    var newTitle = `Elecciones ${selectElement.value} | ${parseInt(selectElement.getAttribute("tipoEleccion")) == 1 ? "Paso" : "Generales"}`;
+    var newTitle = `Elecciones ${datos.anioEleccion} | ${datos.tipoEleccionText}`;
 
     var tituloEleccion = document.getElementById("tituloEleccion");
     tituloEleccion.textContent = newTitle;
 
-    var categoria = document.getElementById("filtroCargo");
-    var categoriaText = categoria.value;
-    var distrito = document.getElementById("filtroDistrito");
-    var distritoText = distrito.options[distrito.selectedIndex].text;
-    var seccion = document.getElementById("filtroSeccion");
-    var seccionText = seccion.options[seccion.selectedIndex].text;
-    var newSubtitle = `${selectElement.value} > ${parseInt(selectElement.getAttribute("tipoEleccion")) == 1 ? "Paso" : "Generales"} > Provisorio > ${categoriaText} > ${distritoText} > ${seccionText}`;
+    var newSubtitle = `${datos.anioEleccion} > ${datos.tipoEleccionText} > Provisorio > ${datos.categoriaText} > ${datos.distritoText} > ${datos.seccionText}`;
 
     var subtituloEleccion = document.getElementById("subtituloEleccion");
     subtituloEleccion.textContent = newSubtitle;
     
-    fetchVotos();
+    fetchVotos(datos);
     var warningMensaje = document.querySelector('.warning');
     warningMensaje.style.display = 'block';
 
@@ -271,47 +260,27 @@ function filtrarDatos() {
     setTimeout(function () {
         warningMensaje.style.display = 'none';
     }, 4000); // 4000 milisegundos (4 segundos)
-
 }
 
-async function fetchVotos() {
-    var selectElement = document.getElementById("filtroAño");
-    var anioEleccion = selectElement.value;
-    var tipoRecuento = 1; //por defecto
-    var tipoEleccion = selectElement.getAttribute("tipoEleccion");
-    var categoria = document.getElementById("filtroCargo");
-    var categoriaId = categoria.options[categoria.selectedIndex].getAttribute("cargo_id");
-    var distritoId = document.getElementById("filtroDistrito").value;
-    var seccionId = document.getElementById("filtroSeccion").value;
-    var seccionProvincialId;
-  
-
-
-
-
+async function fetchVotos(datos) {
     try {
         const response = await fetch(
-            "https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=" + anioEleccion +
-            "&tipoRecuento=" + tipoRecuento + "&tipoEleccion=" + tipoEleccion + "&categoriaId=" + categoriaId + "&distritoId=" + distritoId +
-            "&seccionProvincialId&seccionId=" + seccionId + "&circuitoId&mesaId");
+            "https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=" + datos.anioEleccion +
+            "&tipoRecuento=" + datos.tipoRecuento + "&tipoEleccion=" + datos.tipoEleccion + "&categoriaId=" + datos.categoriaId +
+            "&distritoId=" + datos.distritoId + "&seccionProvincialId&seccionId=" + datos.seccionId + "&circuitoId&mesaId");
         if (!response.ok) {
             throw new Error("Error en la solicitud");
         }
         const votos = await response.json(); // Respuesta de la api
-
         var votosTotalizados = votos.valoresTotalizadosPositivos; // Array que tiene los datos que van en el BOX de la izquierda
 
         console.log(votosTotalizados);
-
         console.log("--------------------------------------------")
         console.log(votos)
         console.log("--------------------------------------------")
 
-
-        mostrarVotos(votos); // Funcion que muestra los valores MESAS ESCRUTADAS , ELECTORES , PARTICIPACION 
+        mostrarVotos(datos, votos); // Funcion que muestra los valores MESAS ESCRUTADAS , ELECTORES , PARTICIPACION 
         mostrarVotosTotalizados(votosTotalizados);
-
-
 
     } catch (error) {
         console.error("Error en fetchVotos:", error);
@@ -331,7 +300,6 @@ function mostrarVotosTotalizados(votosTotalizados) { // Funcion que muestra el b
     ]
 
     // Obtén el contenedor donde deseas agregar las agrupaciones
-
     const agrupacionesContainer = document.querySelector('.agrupaciones-container');
     const grid = document.querySelector('.grid');
     let template = '';
@@ -368,32 +336,21 @@ function mostrarVotosTotalizados(votosTotalizados) { // Funcion que muestra el b
     grid.innerHTML = template;
 }
 
-function mostrarVotos(votosAMostrar) {
+function mostrarVotos(datos, votosAMostrar) {
     document.getElementById("porcentajeMesas").textContent = votosAMostrar.estadoRecuento.mesasTotalizadas;
     document.getElementById("porcentajeElectores").textContent = votosAMostrar.estadoRecuento.cantidadElectores;
     document.getElementById("porcentajeParticipacion").textContent = votosAMostrar.estadoRecuento.participacionPorcentaje + "%";
 
     var divElement = document.getElementById('mapas');
-    var svgPath = mapas[parseInt(document.getElementById("filtroDistrito").value)];
-    var distrito = document.getElementById("filtroDistrito");
-    var distritoText = distrito.options[distrito.selectedIndex].text;
-    divElement.innerHTML = `<h3>${distritoText}</h3> ${svgPath}`;
+    var svgPath = mapas[parseInt(datos.distritoId)];
+    divElement.innerHTML = `<h3>${datos.distritoText}</h3> ${svgPath}`;
 
-    saveLocalStorage();
+    saveLocalStorage(datos);
 }
 
 function saveLocalStorage() {
-    var selectElement = document.getElementById("filtroAño");
-    var anioEleccion = selectElement.value;
-    var tipoRecuento = 1; //por defecto
-    var tipoEleccion = selectElement.getAttribute("tipoEleccion");
-    var categoria = document.getElementById("filtroCargo");
-    var categoriaId = categoria.options[categoria.selectedIndex].getAttribute("cargo_id");
-    var distritoId = document.getElementById("filtroDistrito").value;
-    var seccionId = document.getElementById("filtroSeccion").value;
-
     var saved = localStorage.getItem("INFORMES");
-    var datosSeleccionados = [anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccionId];
+    var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.categoriaId, datos.distritoId, datos.seccionId];
     var jsonString = JSON.stringify(datosSeleccionados);
 
     var bandera = 0;

@@ -185,12 +185,11 @@ header{
 footer{
     background-color: var(--fondo-Footer);
     position: fixed;
-    height: 12%;
+    height: 10%;
     left: 0;
     bottom: 0;
     width: 100%;
     color: gray;
-    
 }
 
 footer div{
@@ -198,7 +197,7 @@ footer div{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
+    height: 100%;
 }
 
 footer img{
