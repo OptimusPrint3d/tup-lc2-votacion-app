@@ -248,13 +248,7 @@ function filtrarDatos() {
     subtituloEleccion.textContent = newSubtitle;
     
     fetchVotos(datos);
-    var warningMensaje = document.querySelector('.warning');
-    warningMensaje.style.display = 'block';
-
-    // Programa la ocultación del mensaje de advertencia después de 4 segundos
-    setTimeout(function () {
-        warningMensaje.style.display = 'none';
-    }, 4000); // 4000 milisegundos (4 segundos)
+   
 }
 
 async function fetchVotos(datos) {
