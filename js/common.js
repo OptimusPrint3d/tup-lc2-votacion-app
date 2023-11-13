@@ -419,7 +419,7 @@ function mostrarVotos(datos, votosAMostrar) {
 function saveLocalStorage() {
     datos=localStorageData;
     var saved = localStorage.getItem("INFORMES");
-    var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.tipoEleccionText, datos.categoria, datos.categoriaId, datos.categoriaText, datos.distritoId, datos.distritoText, datos.seccionId, datos.seccionText, datos.seccionProvincialId];
+    var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.tipoEleccionText, datos.categoriaId, datos.categoriaText, datos.distritoId, datos.distritoText, datos.seccionId, datos.seccionText, datos.seccionProvincialId];
     var jsonString = JSON.stringify(datosSeleccionados);
 
     var bandera = 0;

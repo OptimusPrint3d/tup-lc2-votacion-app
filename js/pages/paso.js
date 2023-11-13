@@ -2,6 +2,7 @@ var url = window.location.href;
 var ubicacionPag = url.substring(url.lastIndexOf("/") + 1);
 console.log(ubicacionPag);
 var tipoEleccion;
+var localStorageData;
 
 if (ubicacionPag === "generales.html") {
     tipoEleccion = 2
@@ -393,12 +394,53 @@ function mostrarVotos(datos, votosAMostrar) {
     var svgPath = mapas[parseInt(datos.distritoId)];
     divElement.innerHTML = `<h3>${datos.distritoText}</h3> ${svgPath}`;
 
-    saveLocalStorage(datos);
+    //saveLocalStorage(datos);
+    localStorageData=datos;
 }
 
 function saveLocalStorage() {
+    datos=localStorageData;
+    var saved = localStorage.getItem("INFORMES");
+    var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.tipoEleccionText, datos.categoriaId, datos.categoriaText, datos.distritoId, datos.distritoText, datos.seccionId, datos.seccionText, datos.seccionProvincialId];
+    var jsonString = JSON.stringify(datosSeleccionados);
+
+    var bandera = 0;
+    if (saved != null) {
+        var informesObject = JSON.parse(saved);
+        var totalKeys = Object.keys(informesObject).length;
+
+        for (var i = 1; i <= totalKeys; i++) {
+            var clave = i;
+            var array = informesObject[clave - 1];
+            var informesObjectString = JSON.stringify(array);
+            if (informesObjectString == jsonString) {
+                bandera = 1;
+                mostrarMensaje('error', 'Ya se agregó previamente ese resultado al informe', 3000);
+                break;
+            }
+        }
+    } else {
+        var object = { 0: datosSeleccionados };
+        var objectJsonString = JSON.stringify(object);
+        localStorage.setItem("INFORMES", objectJsonString);
+        mostrarMensaje('exito', 'Se agregó con éxito el resultado al informe', 3000);
+    }
+
+    if (bandera == 0 && saved != null) {
+        var informesObject = JSON.parse(saved);
+        var totalKeys = Object.keys(informesObject).length;
+        informesObject[totalKeys] = datosSeleccionados;
+        var objectJsonString = JSON.stringify(informesObject);
+        localStorage.setItem("INFORMES", objectJsonString);
+        mostrarMensaje('exito', 'Se agregó con éxito el resultado al informe', 3000);
+    }
+    
+}
+
+/* function saveLocalStorage() {
     var saved = localStorage.getItem("INFORMES");
     var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.categoriaId, datos.distritoId, datos.seccionId];
+    
     var jsonString = JSON.stringify(datosSeleccionados);
 
     var bandera = 0;
@@ -433,4 +475,4 @@ function saveLocalStorage() {
         mostrarMensaje('exito', 'Se agregó con éxito el resultado al informe', 3000);
 
     }
-}
+} */
