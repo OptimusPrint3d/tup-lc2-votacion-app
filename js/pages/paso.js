@@ -32,7 +32,7 @@ async function fetchData() {
         console.log(años)
         return años; // Devuelve los datos
     } catch (error) {
-        console.error("Error en fetchData:", error);
+        mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
         throw error; // Lanza el error nuevamente
     }
 }
@@ -65,7 +65,7 @@ function getAñoSeleccionado() {
     const miAtributo = selectElement.getAttribute("tipoEleccion");
 
     console.log(miAtributo);
-    console.log(selectedValue)
+    console.log(selectedValue);
 
     if (selectedValue && selectedValue != 0) {
         fetchCargos(selectedValue);
@@ -87,7 +87,8 @@ async function fetchCargos(selectedValue) {
         guardarYMostrarCargos(data);
 
     } catch (error) {
-        console.error("Error en fetchAPI:", error);
+        mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
+        throw error; // Lanza el error nuevamente
     }
 }
 
@@ -272,7 +273,7 @@ async function fetchVotos(datos) {
         mostrarVotosTotalizados(votosTotalizados);
 
     } catch (error) {
-        console.error("Error en fetchVotos:", error);
+        mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
         throw error; // Lanza el error nuevamente
     }
 }

@@ -7,6 +7,7 @@ var ubicacionPag = url.substring(url.lastIndexOf("/") + 1);
 console.log(ubicacionPag);
 var tipoEleccion;
 const tipoRecuento = 1;
+var localStorageData;
 
 if (ubicacionPag === "generales.html") {
     tipoEleccion = 2
@@ -81,16 +82,12 @@ function mostrarMensaje(tipo, mensaje, tiempo) {
   mostrarMensaje('warning', 'No tiene resultados agregados en el informe', 3000); */
 
 
-
-
-
 async function fetchData() {
     display_loader('block');
-
-
     try {
         const response = await fetch("https://resultados.mininterior.gob.ar/api/menu/periodos");
         if (!response.ok) {
+            display_loader('none');
             throw new Error("Error en la solicitud");
         }
         const años = await response.json();
@@ -98,8 +95,8 @@ async function fetchData() {
         console.log(años)
         return años; // Devuelve los datos
     } catch (error) {
-        console.error("Error en fetchData:", error);
-        
+        mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
+        display_loader('none');
         throw error; // Lanza el error nuevamente
     }
 }
@@ -124,6 +121,7 @@ fetchData()
     })
     .catch(error => {
         console.error("Error:", error);
+        display_loader('none');
     });
 
 function getAñoSeleccionado() {
@@ -140,12 +138,13 @@ function getAñoSeleccionado() {
 }
 
 async function fetchCargos(selectedValue) {
-
+    display_loader('block');
     console.log(tipoEleccion);
     try {
         const response = await fetch("https://resultados.mininterior.gob.ar/api/menu?año=" + selectedValue);
 
         if (!response.ok) {
+            display_loader('none');
             throw new Error("Error en la solicitud");
         }
 
@@ -154,7 +153,9 @@ async function fetchCargos(selectedValue) {
         guardarYMostrarCargos(data);
 
     } catch (error) {
-        console.error("Error en fetchAPI:", error);
+        mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
+        display_loader('none');
+        throw error; // Lanza el error nuevamente
     }
 }
 
@@ -183,6 +184,7 @@ function guardarYMostrarCargos(data) {
     }).join('');
 
     selectElement.innerHTML = selectHTML;
+    display_loader('none');
 }
 
 var arrayAñoMasCargo;
@@ -315,22 +317,17 @@ function filtrarDatos() {
     subtituloEleccion.textContent = newSubtitle;
     
     fetchVotos(datos);
-    var warningMensaje = document.querySelector('.warning');
-    warningMensaje.style.display = 'block';
-
-    // Programa la ocultación del mensaje de advertencia después de 4 segundos
-    setTimeout(function () {
-        warningMensaje.style.display = 'none';
-    }, 4000); // 4000 milisegundos (4 segundos)
 }
 
 async function fetchVotos(datos) {
+    display_loader('block');
     try {
         const response = await fetch(
             "https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=" + datos.anioEleccion +
             "&tipoRecuento=" + datos.tipoRecuento + "&tipoEleccion=" + datos.tipoEleccion + "&categoriaId=" + datos.categoriaId +
             "&distritoId=" + datos.distritoId + "&seccionProvincialId&seccionId=" + datos.seccionId + "&circuitoId&mesaId");
         if (!response.ok) {
+            display_loader('none');
             throw new Error("Error en la solicitud");
         }
         const votos = await response.json(); // Respuesta de la api
@@ -345,8 +342,8 @@ async function fetchVotos(datos) {
         mostrarVotosTotalizados(votosTotalizados);
 
     } catch (error) {
-        console.error("Error en fetchVotos:", error);
         mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
+        display_loader('none');
         throw error; // Lanza el error nuevamente
     }
 }
@@ -409,12 +406,13 @@ function mostrarVotos(datos, votosAMostrar) {
     var svgPath = mapas[parseInt(datos.distritoId)];
     divElement.innerHTML = `<h3>${datos.distritoText}</h3> ${svgPath}`;
 
-    saveLocalStorage(datos);
+    localStorageData=datos;
 }
 
 function saveLocalStorage() {
+    datos=localStorageData;
     var saved = localStorage.getItem("INFORMES");
-    var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.categoriaId, datos.distritoId, datos.seccionId];
+    var datosSeleccionados = [datos.anioEleccion, datos.tipoRecuento, datos.tipoEleccion, datos.tipoEleccionText, datos.categoria, datos.categoriaId, datos.categoriaText, datos.distritoId, datos.distritoText, datos.seccionId, datos.seccionText, datos.seccionProvincialId];
     var jsonString = JSON.stringify(datosSeleccionados);
 
     var bandera = 0;
