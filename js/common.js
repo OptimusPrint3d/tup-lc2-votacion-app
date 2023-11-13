@@ -96,7 +96,7 @@ async function fetchData() {
         return años; // Devuelve los datos
     } catch (error) {
         mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
-        display_loader('none');
+        
         throw error; // Lanza el error nuevamente
     }
 }
@@ -333,13 +333,20 @@ async function fetchVotos(datos) {
         const votos = await response.json(); // Respuesta de la api
         var votosTotalizados = votos.valoresTotalizadosPositivos; // Array que tiene los datos que van en el BOX de la izquierda
 
-        console.log(votosTotalizados);
-        console.log("--------------------------------------------")
-        console.log(votos)
-        console.log("--------------------------------------------")
-        console.log(datos);
-        mostrarVotos(datos, votos); // Funcion que muestra los valores MESAS ESCRUTADAS , ELECTORES , PARTICIPACION 
-        mostrarVotosTotalizados(votosTotalizados);
+        if(votosTotalizados.length == 0){
+            mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
+            display_loader('none');
+        }else{
+            console.log(votosTotalizados);
+            console.log("--------------------------------------------")
+            console.log(votos)
+            console.log("--------------------------------------------")
+            console.log(datos);
+            display_loader('none');
+            mostrarVotos(datos, votos); // Funcion que muestra los valores MESAS ESCRUTADAS , ELECTORES , PARTICIPACION 
+            mostrarVotosTotalizados(votosTotalizados);
+        }
+       
 
     } catch (error) {
         mostrarMensaje('error', 'Error. Se produjo un error al intentar consultar los resultados', 3000);
@@ -426,6 +433,7 @@ function saveLocalStorage() {
             var informesObjectString = JSON.stringify(array);
             if (informesObjectString == jsonString) {
                 bandera = 1;
+                mostrarMensaje('error', 'Ya se agregó previamente ese resultado al informe', 3000);
                 break;
             }
         }
@@ -433,6 +441,7 @@ function saveLocalStorage() {
         var object = { 0: datosSeleccionados };
         var objectJsonString = JSON.stringify(object);
         localStorage.setItem("INFORMES", objectJsonString);
+        mostrarMensaje('exito', 'Se agregó con éxito el resultado al informe', 3000);
     }
 
     if (bandera == 0 && saved != null) {
@@ -441,5 +450,7 @@ function saveLocalStorage() {
         informesObject[totalKeys] = datosSeleccionados;
         var objectJsonString = JSON.stringify(informesObject);
         localStorage.setItem("INFORMES", objectJsonString);
+        mostrarMensaje('exito', 'Se agregó con éxito el resultado al informe', 3000);
     }
+    
 }
